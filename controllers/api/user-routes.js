@@ -3,8 +3,9 @@ const { User } = require('../../models');
 // const withAuth = require('../../utils/auth');
 
 
-
+//new user
 router.post('/', async (req, res) => {
+  console.log(req.body)
     try {
       const userData = await User.create({
         username: req.body.username,
@@ -23,7 +24,7 @@ router.post('/', async (req, res) => {
     }
   });
 
-
+///login
   router.post('/login', async (req, res) => {
 
     try {
@@ -39,7 +40,7 @@ router.post('/', async (req, res) => {
         return;
       }
   
-      const goodPw = user.checkPassword(req.body.password);
+      const goodPw = users.checkPassword(req.body.password);
         if (!goodPw) {
         res.status(400).json({ message: 'No user found' });
         
@@ -60,7 +61,7 @@ router.post('/', async (req, res) => {
   });
   
 
-  
+  //logout
   router.post('/logout', (req, res) => {
 
     if (req.session.loggedIn) {

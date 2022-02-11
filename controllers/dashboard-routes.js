@@ -4,7 +4,7 @@ const { Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 // const sequelize = require('../config/config');
 
-
+//all posts
 router.get('/', withAuth, async (req, res) => {
     try {
       const postData = await Post.findAll({
@@ -21,7 +21,7 @@ router.get('/', withAuth, async (req, res) => {
       res.redirect('login');
     }
   });
-
+//clicking on the post
 router.get('/new', withAuth, (req, res) => {
     res.render('new-post', {
       layout: 'dashboard',
