@@ -3,7 +3,7 @@ const { User } = require('../../models');
 // const withAuth = require('../../utils/auth');
 
 
-//new user
+//new user signup
 router.post('/', async (req, res) => {
   console.log(req.body)
     try {
@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
     }
   });
 
-///login
+/// user login
   router.post('/login', async (req, res) => {
 
     try {

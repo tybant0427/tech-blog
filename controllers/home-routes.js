@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Post, Comment, User } = require('../models/');
 const withAuth = require('../utils/auth');
 
-
+//get posts to display on homepage
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-
+//get a single post
 router.get('/post/:id', withAuth, async (req, res) => {
   try {
  
@@ -43,6 +43,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
   }
 });
 
+//login route
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/dashboard');
@@ -51,6 +52,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+//signup route
 router.get('/signup', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/dashboard');

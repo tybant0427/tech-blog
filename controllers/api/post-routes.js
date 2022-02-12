@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-
+//create a post
 router.post('/', withAuth, async (req, res) => {
     const body = req.body;
       console.log(body);
@@ -16,7 +16,7 @@ router.post('/', withAuth, async (req, res) => {
     }
   });
 
-
+//update a post
   router.put('/:id', withAuth, async (req, res) => {
     try {
       console.log('here is the req.body', req.body);
@@ -36,6 +36,7 @@ router.post('/', withAuth, async (req, res) => {
     }
   });
 
+  //delete a post
   router.delete('/:id', withAuth, async (req, res) => {
     try {
       const [rows] = Post.destroy({

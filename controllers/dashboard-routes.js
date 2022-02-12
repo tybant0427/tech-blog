@@ -4,7 +4,7 @@ const { Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 // const sequelize = require('../config/config');
 
-//all posts
+//all posts for dashboard
 router.get('/', withAuth, async (req, res) => {
     try {
       const postData = await Post.findAll({
@@ -21,13 +21,14 @@ router.get('/', withAuth, async (req, res) => {
       res.redirect('login');
     }
   });
-//clicking on the post
+//click on the new post button
 router.get('/new', withAuth, (req, res) => {
     res.render('new-post', {
       layout: 'dashboard',
     });
   });
 
+  //click on already made posts
 router.get('/edit/:id', withAuth, async (req, res) => {
     try {
       const postData = await Post.findByPk(req.params.id);
