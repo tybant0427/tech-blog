@@ -12,12 +12,25 @@ router.get('/', (req, res) => {
         })
 });
 
+// router.post('/', withAuth, async (req, res) => {
+//     const body = req.body;
+  
+//     try {
+//       const newComment = await Comment.create({
+//         ...body,
+//         userId: req.session.userId,
+//       });
+//       res.json(newComment);
+//     } catch (err) {
+//       res.status(500).json(err);
+//     }
+//   });
 
 router.post('/', withAuth, (req, res) => {
     if (req.session) {
 
     Comment.create({
-        commentText: req.body.commentText, 
+        commentBody: req.body.commentBody, 
         postId: req.body.postId,
         userId: req.session.userId,
     })
@@ -30,24 +43,24 @@ router.post('/', withAuth, (req, res) => {
     }
 });
 
-router.delete('/:id', withAuth, (req, res) => {
+// router.delete('/:id', withAuth, (req, res) => {
 
-    Comment.destroy({
-        where: {
-            id: req.params.id 
-        }
-    }).then(commentData => {
+//     Comment.destroy({
+//         where: {
+//             id: req.params.id 
+//         }
+//     }).then(commentData => {
 
-        if (!commentData) {
-            res.status(404).json({ message: 'No comment found' });
-            return;
-        }
-        res.json(commentData);
-    }).catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
-});
+//         if (!commentData) {
+//             res.status(404).json({ message: 'No comment found' });
+//             return;
+//         }
+//         res.json(commentData);
+//     }).catch(err => {
+//         console.log(err);
+//         res.status(500).json(err);
+//     });
+// });
 
 module.exports = router;
 
