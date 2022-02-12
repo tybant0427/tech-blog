@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
         return;
       }
   
-      const goodPw = users.checkPassword(req.body.password);
+      const goodPw = user.checkPassword(req.body.password);
         if (!goodPw) {
         res.status(400).json({ message: 'No user found' });
         
